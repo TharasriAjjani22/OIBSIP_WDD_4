@@ -1,147 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-        body { font-family: 'Roboto', sans-serif; transition: background-color 0.3s ease; }
-        
-        
-        .collage-bg {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1974&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Responsive Instagram Login</title>
 
-        .insta-gradient {
-            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-        }
+<script src="https://cdn.tailwindcss.com"></script>
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-        }
-    </style>
+<style>
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.collage-bg {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7');
+    background-size: cover;
+    background-position: center;
+}
+
+.glass-card {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+}
+
+</style>
 </head>
+
 <body class="collage-bg flex items-center justify-center min-h-screen">
 
-    <div id="auth-container" class="w-full max-w-[350px] p-4">
-        <div class="glass-card border border-gray-300 p-8 flex flex-col items-center mb-4 rounded-md shadow-2xl">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png" class="mt-4 mb-8 w-44" alt="Instagram">
+
+<div id="auth-container" class="w-full max-w-[380px] p-4">
+
+    <div class="glass-card border p-8 rounded-xl shadow-2xl text-center">
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png" class="mt-4 mb-8 w-46" alt="Instagram">
             
-            <div id="form-fields" class="w-full space-y-2">
-                <input type="text" id="username" placeholder="Phone number, username, or email" class="w-full px-2 py-2 text-xs bg-gray-50 border border-gray-300 rounded-sm focus:outline-none focus:border-gray-400">
-                <input type="password" id="password" placeholder="Password" class="w-full px-2 py-2 text-xs bg-gray-50 border border-gray-300 rounded-sm focus:outline-none focus:border-gray-400">
-                
-                <button onclick="handleAuth()" id="main-btn" class="w-full bg-[#0095f6] text-white py-1.5 rounded font-semibold text-sm mt-4 hover:bg-blue-600 transition">Log In</button>
-            </div>
 
-            <div class="flex items-center my-4 w-full">
-                <div class="flex-1 h-px bg-gray-300"></div>
-                <div class="px-4 text-xs text-gray-400 font-semibold">OR</div>
-                <div class="flex-1 h-px bg-gray-300"></div>
-            </div>
+        <input id="username" placeholder="Phone number, username, or email"
+        class="w-full border p-2 mb-2 text-sm rounded">
 
-            <button class="flex items-center text-[#385185] font-semibold text-sm">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_(2019).png" class="w-5 h-5 mr-2" alt="FB">
-                Log in with Facebook
-            </button>
-            <p class="text-xs text-[#00376b] mt-4 cursor-pointer">Forgot password?</p>
+        <input id="password" type="password" placeholder="Password"
+        class="w-full border p-2 mb-3 text-sm rounded">
+
+        <button onclick="handleAuth()"
+        class="w-full bg-[#0095f6] text-white py-2 rounded font-semibold">
+        Log In
+        </button>
+
+        <div class="flex items-center my-4">
+            <div class="flex-1 h-px bg-gray-300"></div>
+            <span class="px-2 text-xs text-gray-400">OR</span>
+            <div class="flex-1 h-px bg-gray-300"></div>
         </div>
 
-        <div class="glass-card border border-gray-300 p-6 text-center text-sm rounded-md shadow-xl">
-            <p id="switch-text">Don't have an account? <span onclick="toggleMode()" class="text-[#0095f6] font-semibold cursor-pointer">Sign up</span></p>
-        </div>
+        <p class="text-blue-900 text-sm font-semibold">Log in with Facebook</p>
+        <p class="text-xs text-blue-800 mt-3">Forgot password?</p>
     </div>
 
-    <div id="feed-page" class="hidden w-full min-h-screen bg-white">
-        <nav class="fixed top-0 left-0 right-0 bg-white border-b border-gray-300 h-16 flex items-center justify-between px-4 md:px-20 z-50">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png" class="w-28" alt="Instagram">
-            <div class="flex items-center space-x-4">
-                <button onclick="logout()" class="text-sm font-semibold text-red-500 border border-red-500 px-3 py-1 rounded-md hover:bg-red-50 transition">Logout</button>
-            </div>
-        </nav>
+    <div class="glass-card mt-3 p-4 text-center rounded-xl">
+        <p class="text-sm">
+            Don't have an account?
+            <span onclick="toggleMode()" class="text-blue-500 cursor-pointer font-semibold">
+                Sign up
+            </span>
+        </p>
+    </div>
+</div>
 
-        <div class="pt-24 pb-10 flex flex-col items-center">
-            <div class="w-full max-w-[470px] bg-white border border-gray-300 rounded-lg">
-                <div class="p-4 flex items-center justify-between">
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 rounded-full insta-gradient p-[2px]">
-                            <div class="w-full h-full rounded-full bg-white p-[2px]">
-                                <img src="https://i.pravatar.cc/150?u=gemini" class="rounded-full w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <span class="ml-3 font-semibold text-sm">gemini_ai_official</span>
-                    </div>
-                    <span class="font-bold text-lg cursor-pointer">...</span>
-                </div>
 
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop" class="w-full object-cover max-h-[500px]" alt="Post">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="absolute top-4 right-4 w-8 bg-white/80 p-1 rounded-full shadow-lg">
-                </div>
+<div id="feed-page" class="hidden w-full min-h-screen bg-gray-50">
 
-                <div class="p-4">
-                    <div class="flex space-x-4 mb-2">
-                        <span class="text-2xl cursor-pointer">❤️</span>
-                        <span class="text-2xl cursor-pointer">💬</span>
-                        <span class="text-2xl cursor-pointer">✈️</span>
-                    </div>
-                    <p class="text-sm font-bold mb-1">1,248 likes</p>
-                    <p class="text-sm"><span class="font-bold">gemini_ai</span> Hey Welcome...!!! Your Instagram authentication is now live! 🚀 Access granted to the secured page content. ✨</p>
-                    <p class="text-xs text-gray-400 mt-2 uppercase tracking-tighter">2 minutes ago</p>
-                </div>
-            </div>
+<nav class="fixed top-0 left-0 right-0 bg-white border-b border-gray-300 h-14 flex items-center justify-between px-6 z-50">
+
+    
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png"
+    class="w-28">
+
+    
+    <input type="text" placeholder="Search"
+    class="hidden md:block bg-gray-100 px-3 py-1 rounded text-sm">
+
+    <button onclick="logout()" class="text-red-500 text-sm font-semibold">
+        Logout
+    </button>
+</nav>
+
+
+<div class="pt-20 flex justify-center">
+<div class="w-full max-w-[470px]">
+
+
+<div class="flex space-x-4 overflow-x-auto bg-white border p-3 rounded-lg mb-4">
+
+    <div class="text-center">
+        <div class="w-16 h-16 rounded-full p-[2px] bg-gradient-to-tr from-yellow-400 to-pink-600">
+            <img src="https://i.pravatar.cc/100?u=1" class="rounded-full border-2 border-white">
         </div>
+        <p class="text-xs mt-1">user1</p>
     </div>
 
-    <script>
-        let isLoginMode = true;
+    <div class="text-center">
+        <div class="w-16 h-16 rounded-full p-[2px] bg-gradient-to-tr from-yellow-400 to-pink-600">
+            <img src="https://i.pravatar.cc/100?u=2" class="rounded-full border-2 border-white">
+        </div>
+        <p class="text-xs mt-1">user2</p>
+    </div>
 
-        function toggleMode() {
-            isLoginMode = !isLoginMode;
-            document.getElementById('main-btn').innerText = isLoginMode ? 'Log In' : 'Sign Up';
-            document.getElementById('switch-text').innerHTML = isLoginMode 
-                ? "Don't have an account? <span onclick='toggleMode()' class='text-[#0095f6] font-semibold cursor-pointer'>Sign up</span>"
-                : "Have an account? <span onclick='toggleMode()' class='text-[#0095f6] font-semibold cursor-pointer'>Log in</span>";
+</div>
+
+<div id="posts" class="space-y-6"></div>
+
+</div>
+</div>
+</div>
+
+<script>
+let isLogin = true;
+
+function toggleMode() {
+    isLogin = !isLogin;
+    alert(isLogin ? "Login Mode" : "Signup Mode");
+}
+
+function handleAuth() {
+    const user = username.value;
+    const pass = password.value;
+
+    if (user.length < 3 || pass.length < 6) {
+        alert("Enter valid credentials");
+        return;
+    }
+
+    if (isLogin) {
+        const stored = localStorage.getItem(user);
+
+        if (stored === pass || (user==="admin" && pass==="123456")) {
+            enterFeed();
+        } else {
+            alert("Invalid login");
         }
+    } else {
+        localStorage.setItem(user, pass);
+        alert("Registered! Now login");
+        isLogin = true;
+    }
+}
 
-        function handleAuth() {
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
+function enterFeed() {
+    document.getElementById("auth-container").style.display="none";
+    document.getElementById("feed-page").style.display="block";
+    document.body.classList.remove("collage-bg");
 
-            if (user.length < 3 || pass.length < 6) {
-                alert("Please enter valid credentials (Min: 6 chars for password)");
-                return;
-            }
+    loadPosts();
+}
 
-            if (isLoginMode) {
-                const storedPass = localStorage.getItem(user);
-                if (storedPass === pass || (user === "admin" && pass === "123456")) {
-                    enterFeed();
-                } else {
-                    alert("Invalid username or password. (Hint: Register first or use admin/123456)");
-                }
-            } else {
-                localStorage.setItem(user, pass);
-                alert("Registration Successful! Please login.");
-                toggleMode();
-            }
-        }
+function logout() {
+    location.reload();
+}
 
-        function enterFeed() {
-            document.getElementById('auth-container').classList.add('hidden');
-            document.body.classList.remove('collage-bg');
-            document.body.classList.add('bg-gray-50');
-            document.getElementById('feed-page').classList.remove('hidden');
-        }
 
-        function logout() {
-            location.reload();
-        }
-    </script>
+const postsData = [
+{
+    user:"nature",
+    profile:"https://i.pravatar.cc/150?u=1",
+    img:"https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+    caption:"Beautiful nature 🌿",
+    likes:"2,345"
+},
+{
+    user:"foodie",
+    profile:"https://i.pravatar.cc/150?u=2",
+    img:"https://images.unsplash.com/photo-1490645935967-10de6ba17061",
+    caption:"Yummy 😍",
+    likes:"1,200"
+}
+];
+
+function loadPosts() {
+    const container = document.getElementById("posts");
+    container.innerHTML = "";
+
+    postsData.forEach(post => {
+        container.innerHTML += `
+        <div class="bg-white border border-gray-300">
+
+            <div class="flex items-center justify-between p-3">
+                <div class="flex items-center">
+                    <img src="${post.profile}" class="w-8 h-8 rounded-full">
+                    <span class="ml-2 text-sm font-semibold">${post.user}</span>
+                </div>
+                <span>⋯</span>
+            </div>
+
+            <img src="${post.img}" class="w-full object-cover max-h-[500px]">
+
+            <div class="px-3 pt-2">
+                <div class="flex space-x-4 text-2xl">
+                    ❤️ 💬 ✈️
+                </div>
+            </div>
+
+            <div class="px-3 pt-1">
+                <p class="text-sm font-semibold">${post.likes} likes</p>
+            </div>
+
+            <div class="px-3 pt-1 pb-2">
+                <p class="text-sm">
+                    <span class="font-semibold">${post.user}</span> ${post.caption}
+                </p>
+            </div>
+
+            <div class="px-3 pb-3">
+                <p class="text-xs text-gray-400 uppercase">2 minutes ago</p>
+            </div>
+
+        </div>
+        `;
+    });
+}
+</script>
+
 </body>
 </html>
